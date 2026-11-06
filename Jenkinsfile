@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'docker:latest'
+            alwaysPull true
+        }
+    }
     stages {
         stage('Checkout') {
             steps {
@@ -8,12 +13,12 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t iamyekinniyayaisaiah/jenkinspipeline .'
+                sh 'docker build -t iamyekinniyayaisaiah/1jenkinspipeline .'
             }
         }
         stage('Run Container') {
             steps {
-                sh 'docker run -d --name web-demo -p 8082:80 iamyekinniyayaisaiah/jenkinspipeline'
+                sh 'docker run -d --name web-1demo -p 8082:80 iamyekinniyayaisaiah/1jenkinspipeline'
             }
         }
     }
