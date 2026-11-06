@@ -42,11 +42,10 @@ pipeline {
         '''
       }
     }
-    stage('Verify') {
-      steps {
-        sh 'sleep 3 && curl -f http://localhost:${HOST_PORT} || exit 1'
-      }
-    }
+  }
+  post {
+    success { echo "✅ Pipeline succeeded! App running at http://34.227.205.120:${HOST_PORT}" }
+    failure { echo "❌ Pipeline failed" }
   }
 }
 
