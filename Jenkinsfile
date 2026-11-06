@@ -3,11 +3,11 @@ pipeline {
     docker {
       image 'docker:latest'
       alwaysPull true
-      args '-v /var/run/docker.sock:/var/run/docker.sock'
+      args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
     }
   }
   environment {
-    HOME = "${env.WORKSPACE}"  // ✅ Use workspace instead of /
+    HOME = "${env.WORKSPACE}"
     IMAGE_NAME = 'iamyekinniyayaisaiah/1jenkinspipeline'
     CONTAINER_NAME = 'web-1demo'
     HOST_PORT = '8083'
